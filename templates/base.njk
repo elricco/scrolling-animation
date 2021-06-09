@@ -1,0 +1,49 @@
+{%- from "templates/system/component.njk" import component -%}
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#cc0605">
+    <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    {% block metatags %}
+    {{ component('meta-tags', {
+    }) }}
+    {% endblock %}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/assets/vendor.css">
+    <link rel="stylesheet" type="text/css" href="/assets/main.css">
+    {% endblock %}
+
+    <title>
+        {% block title %}Client{% endblock %}
+    </title>
+</head>
+
+<body>
+    <div id="top"></div>
+
+    <div class="container-fluid container-md content-bg">
+        {% block body %}{% endblock %}
+
+        {{ component('footer', {}) }}
+    </div>
+
+    {% block javascripts %}
+    <script src="/assets/js/vendor.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/typescript_demo.js"></script>
+    {% endblock %}
+</body>
+
+</html>

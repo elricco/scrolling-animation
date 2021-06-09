@@ -1,0 +1,38 @@
+/* ropa-sans-italic - latin */
+@font-face {
+  font-family: "Ropa Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../assets/fonts/ropa-sans-v10-latin-italic.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../assets/fonts/ropa-sans-v10-latin-italic.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/ropa-sans-v10-latin-italic.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../assets/fonts/ropa-sans-v10-latin-italic.woff") format("woff"),
+    /* Modern Browsers */ url("../assets/fonts/ropa-sans-v10-latin-italic.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../assets/fonts/ropa-sans-v10-latin-italic.svg#RopaSans")
+      format("svg"); /* Legacy iOS */
+}
+/* ropa-sans-regular - latin */
+@font-face {
+  font-family: "Ropa Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/ropa-sans-v10-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../assets/fonts/ropa-sans-v10-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/ropa-sans-v10-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../assets/fonts/ropa-sans-v10-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("../assets/fonts/ropa-sans-v10-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../assets/fonts/ropa-sans-v10-latin-regular.svg#RopaSans")
+      format("svg"); /* Legacy iOS */
+}

@@ -1,0 +1,221 @@
+@import "custom-bootstrap.scss";
+@import "../node_modules/bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.content-bg {
+  background-color: $white;
+}
+
+.big-head {
+  font-size: 3.75rem;
+  line-height: 1.1;
+}
+
+.red-box {
+  display: inline-block;
+  width: 80px;
+  margin-right: -32px;
+}
+
+.red-box-inner {
+  position: relative;
+  width: 50%;
+  background-color: $primary;
+  &:before {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.separator-line {
+  border-bottom: 4px solid $primary;
+}
+
+.hyphens {
+  hyphens: auto;
+}
+
+ul.red-box-list {
+  list-style: none;
+  padding-left: 2rem;
+  text-align: left;
+  li {
+    &::before {
+      content: ""; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      background-color: $primary;
+      color: $primary; /* Change the color */
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      margin-left: -2rem; /* Also needed for space (tweak if needed) */
+      margin-right: 1rem;
+    }
+  }
+}
+
+.navbar-brand {
+  display: flex;
+  .navbar-brand-image {
+    max-width: 200px;
+    height: auto;
+    margin-right: 7.5rem;
+  }
+  font-weight: 700;
+  h1 {
+    display: inline-block;
+    line-height: 1;
+  }
+}
+
+.navbar {
+  .nav-link {
+    margin-left: 20rem;
+  }
+}
+
+.navbar-toggler {
+  padding: ($spacer / 2) $spacer;
+  margin-top: $spacer / 2;
+  margin-bottom: $spacer / 2;
+  border-radius: $spacer / 4;
+  border: none;
+  background: transparent;
+  &:focus {
+    outline: 0 none;
+  }
+
+  &:hover {
+    background: transparent !important;
+  }
+
+  .icon-bar {
+    display: block;
+    height: 9px;
+    width: 90px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    background-color: $primary;
+    & + .icon-bar {
+      margin-top: ($spacer / 4) * 3;
+    }
+  }
+
+  .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 20% 10%;
+  }
+
+  .middle-bar,
+  .over-bar,
+  .under-bar {
+    opacity: 0;
+  }
+
+  .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+  }
+
+  &.collapsed {
+    .top-bar {
+      transform: rotate(0);
+    }
+
+    .middle-bar,
+    .over-bar,
+    .under-bar {
+      opacity: 1;
+    }
+
+    .bottom-bar {
+      transform: rotate(0);
+    }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .navbar-brand {
+    .navbar-brand-image {
+      max-width: 100px;
+      height: auto;
+      margin-right: 3.75rem;
+    }
+    .big-head {
+      font-size: 1.875rem;
+    }
+  }
+  .navbar {
+    .nav-link {
+      margin-left: 10rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .navbar-brand {
+    margin-right: 0;
+    .navbar-brand-image {
+      max-width: 100px;
+      height: auto;
+      margin-right: 1.5rem;
+    }
+    .big-head {
+      font-size: 1.875rem;
+    }
+  }
+  .navbar {
+    .nav-link {
+      margin-left: 7.75rem;
+    }
+  }
+
+  .big-head {
+    font-size: 1.875rem;
+  }
+
+  .navbar-toggler {
+    padding: 0.5rem;
+
+    .top-bar {
+      transform: rotate(45deg);
+      transform-origin: -55% 10%;
+    }
+
+    .bottom-bar {
+      transform: rotate(-45deg);
+      transform-origin: -50% 90%;
+    }
+
+    .icon-bar {
+      width: 30px;
+    }
+
+    &.collapsed {
+      .over-bar,
+      .under-bar {
+        opacity: 0;
+      }
+    }
+  }
+
+  .red-box {
+    display: inline-block;
+    width: 40px;
+    margin-right: -12px;
+  }
+}
+
+#set-height {
+  display: block;
+  width: 100%;
+}
+
+#v0 {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

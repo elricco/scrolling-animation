@@ -1,0 +1,11 @@
+<meta name="robots" content="{{ params.robots|default('all') }}">
+
+<meta name="description" content="{{ params.description|default('') }}">
+
+<meta property="og:title" content="{{ params.ogtitle|default('Client | Additional') }}" />
+<meta property="og:description" content="{{ params.ogdescription|default('') }}" />
+<meta property="og:url" content="https://localhost{{ params.ogurl|default('') }}" />
+<meta property="og:image"
+    content="https://localhost{{ params.ogimage|default('/assets/img/social_media_image.jpg') }}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />

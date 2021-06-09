@@ -1,0 +1,12 @@
+{% if params.video and params.poster %}
+<div class="ratio ratio-1x1">
+    <div class="video-container">
+        <div id="set-hei ght">
+            <video class="scrubbed-video" id="v0" tabindex="0" autobuffer="autobuffer" preload="preload"
+                poster="{{ params.poster }}">
+                <source src="{{ params.video }}" type="video/mp4" />
+            </video>
+        </div>
+    </div>
+</div>
+{% endif %}

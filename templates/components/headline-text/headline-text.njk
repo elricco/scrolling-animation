@@ -1,0 +1,21 @@
+<div class="row mb-5" {% if params.hook %}id="{{ params.hook }}" {% endif %}>
+    {% if params.headline %}
+    <div class="col-12 mb-4 pl-md-0">
+        <h2 class="text-uppercase big-head">
+            <div class="red-box">
+                <div class="red-box-inner"></div>
+            </div>
+            {{ params.headline }}
+        </h2>
+    </div>
+    {% endif %}
+    <div class="col-12 col-md-3 pl-md-0 pb-3 pb-md-0">
+        {% if params.image %}
+        <img class="img-fluid" src="{{ params.image }}" alt="{{ params.imageAlt }}">
+        {% endif %}
+    </div>
+    <div class="col-12 col-md-9 col-lg-7 pl-md-5 pl-xxl-8 text-justify hyphens">
+        {{ params.text|safe }}
+    </div>
+    <div class="col-12 pb-5 separator-line"></div>
+</div>
