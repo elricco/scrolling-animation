@@ -10,6 +10,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const nunjuckspages = require('./nunjuckspages');
+const webpack = require('webpack');
 
 module.exports = env => {
   const devMode = !env || !env.production;
@@ -112,6 +113,11 @@ module.exports = env => {
     },
     devtool: 'source-map',
     plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      }),
       new NunjucksWebpackPlugin({
         templates: nunjuckspages
       }),
