@@ -1,7 +1,8 @@
 export function videoScrollScrubber() {
     const canvas = document.querySelector('canvas');
     const ctx = canvas.getContext('2d');
-    ctx.drawImage(document.getElementById('poster'), 0, 0, 1000, 1000);
+    const image = document.getElementById('poster');
+    ctx.drawImage(image, 0, 0, 1000, 1000);
 
     let hitPoint = 0;
 
@@ -11,7 +12,7 @@ export function videoScrollScrubber() {
             console.log('Basic waypoint triggered ' + this.triggerPoint);
             hitPoint = this.triggerPoint;
         },
-        offset: '0'
+        offset: '100%'
     });
 
     var inview = new Waypoint.Inview({
