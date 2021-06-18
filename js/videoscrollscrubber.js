@@ -35,7 +35,7 @@ export function videoScrollScrubber() {
 
     let frameNumber = 0; // start video at frame 0
     // lower numbers = faster playback
-    const playbackConst = 2000;
+    const playbackConst = 1000;
     // get page height from video duration
     const setHeight = document.getElementById('set-height');
     // select video element
