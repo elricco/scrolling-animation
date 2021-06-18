@@ -47,6 +47,14 @@ export function videoScrollScrubber() {
         canvas.width = vid.videoWidth;
         canvas.height = vid.videoHeight;
         setHeight.style.height = (vid.duration + 0.5) * playbackConst + 'px';
+        document.getElementById('loadedmeta').innerHTML = '<b>' + canvas.width + ' ' + canvas.height + '</b>';
+    });
+
+    vid.addEventListener('canplaythrough', (event) => {
+        canvas.width = vid.videoWidth;
+        canvas.height = vid.videoHeight;
+        ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
+        document.getElementById('loadedvideo').innerHTML = '<b>' + canvas.width + ' ' + canvas.height + ' HAVE_CURRENT_DATA</b>';
     });
 
     // Use requestAnimationFrame for smooth playback
@@ -57,6 +65,7 @@ export function videoScrollScrubber() {
             vid.currentTime = frameNumber;
             ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
         }
+        document.getElementById('frames').innerHTML = '<b>' + frameNumber + ' ' + (lastFrame - 0.5) + '</b>';
         console.log(frameNumber + ' ' + (lastFrame - 0.5));
         // remove half a second for safari
         // so faster scrolling or overscrolling doesn't "hurt"

@@ -2,8 +2,8 @@
 <div class="ratio ratio-1x1 d-none">
     <div class="video-container">
         <div class="video-wrapper">
-            <video class="scrubbed-video" id="v0" tabindex="0" autobuffer="autobuffer" preload="preload"
-                poster="{{ params.poster }}">
+            <video class="scrubbed-video" autoplay="autoplay" id="v0" tabindex="0" autobuffer="autobuffer"
+                preload="preload" muted="muted" poster="{{ params.poster }}">
                 <source src="{{ params.video }}" type="video/mp4" />
             </video>
             <img id="poster" src="{{ params.poster }}">
