@@ -1,7 +1,11 @@
+require('../node_modules/waypoints/lib/jquery.waypoints.min');
+require('../node_modules/waypoints/lib/shortcuts/inview.min');
+
 export function imageScrollScrubber() {
     const d = document;
     const html = document.documentElement;
     const imageAnimations = d.querySelectorAll('.image-scroll-scrubber');
+    let hitPoint;
 
     if (imageAnimations) {
         [].slice.call(imageAnimations).map(function(el) {
@@ -14,6 +18,22 @@ export function imageScrollScrubber() {
             console.log(frameCount);
 
             heightContainer.style.height = Math.ceil((frameCount * playbackConst)) + 'px';
+
+            const waypoint = new Waypoint({
+                element: heightContainer,
+                handler: function() {
+                    console.log('Basic waypoint triggered ' + this.triggerPoint);
+                    hitPoint = this.triggerPoint;
+                },
+                offset: '0'
+            });
+
+            const observer = new IntersectionObserver(
+                ([e]) => requestAnimationFrame(() => updateImage(currentFrame)),
+                { threshold: [0] }
+            );
+
+            observer.observe(heightContainer);
 
             const currentFrame = index => (
                 `${imageString}_${index.toString().padStart(4, '0')}.jpg`
@@ -35,34 +55,23 @@ export function imageScrollScrubber() {
             };
 
             const updateImage = index => {
-                console.log(index);
-                img.src = currentFrame(index);
-                context.drawImage(img, 0, 0);
-            };
+                if (index >= 0) {
+                    img.src = currentFrame(index);
+                    context.drawImage(img, 0, 0);
+                }
 
-            // position has to be set
-            window.addEventListener('scroll', () => {
-                const scrollTop = html.scrollTop;
-                const maxScrollTop = html.scrollHeight - window.innerHeight;
+                const scrollTop = window.pageYOffset - hitPoint;
+                const maxScrollTop = Math.ceil((frameCount * playbackConst)) - hitPoint;
                 const scrollFraction = scrollTop / maxScrollTop;
-                console.log(frameCount + ' ' + scrollTop + ' ' + maxScrollTop + ' ' + scrollFraction);
                 const frameIndex = Math.min(
                     frameCount - 1,
                     Math.ceil(scrollFraction * frameCount)
                 );
-                console.log(frameIndex);
 
                 requestAnimationFrame(() => updateImage(frameIndex + 1));
-            });
+            };
 
             preloadImages();
         });
     }
-
-/*
-    const canvas = document.getElementById('hero-lightpass');
-
-    const frameCount = 148;
-
-    */
 }
