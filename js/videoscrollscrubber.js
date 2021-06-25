@@ -34,7 +34,7 @@ export function videoScrollScrubber() {
             }
         });
 
-        const frameNumber = 0; // start video at frame 0
+        let frameNumber = 0; // start video at frame 0
         // lower numbers = faster playback
         const playbackConst = 1000;
         // get page height from video duration
@@ -57,21 +57,21 @@ export function videoScrollScrubber() {
             ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
             document.getElementById('loadedvideo').innerHTML = '<b>' + canvas.width + ' ' + canvas.height + ' HAVE_CURRENT_DATA</b>';
         });
-    }
 
-    // Use requestAnimationFrame for smooth playback
-    function scrollPlay() {
-        const lastFrame = vid.duration;
-        frameNumber = (window.pageYOffset - hitPoint) / playbackConst;
-        if (frameNumber < (lastFrame - 0.5)) {
-            vid.currentTime = frameNumber;
-            ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
-        }
-        document.getElementById('frames').innerHTML = '<b>' + frameNumber + ' ' + (lastFrame - 0.5) + '</b>';
-        console.log(frameNumber + ' ' + (lastFrame - 0.5));
-        // remove half a second for safari
-        // so faster scrolling or overscrolling doesn't "hurt"
-        // and the video is not "whitened"
-        window.requestAnimationFrame(scrollPlay);
+        // Use requestAnimationFrame for smooth playback
+        const scrollPlay = () => {
+            const lastFrame = vid.duration;
+            frameNumber = (window.pageYOffset - hitPoint) / playbackConst;
+            if (frameNumber < (lastFrame - 0.5)) {
+                vid.currentTime = frameNumber;
+                ctx.drawImage(vid, 0, 0, canvas.width, canvas.height);
+            }
+            document.getElementById('frames').innerHTML = '<b>' + frameNumber + ' ' + (lastFrame - 0.5) + '</b>';
+            console.log(frameNumber + ' ' + (lastFrame - 0.5));
+            // remove half a second for safari
+            // so faster scrolling or overscrolling doesn't "hurt"
+            // and the video is not "whitened"
+            window.requestAnimationFrame(scrollPlay);
+        };
     }
 }
