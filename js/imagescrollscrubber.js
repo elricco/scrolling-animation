@@ -22,7 +22,8 @@ export function imageScrollScrubber() {
             // initial ratios
             let intitalRatio = window.innerWidth / window.innerHeight;
             let ratio = window.innerWidth / window.innerHeight;
-
+            // initial index
+            let imageIndex = 1;
             // needs to be undefined or animation will already start animating while not in view
             let hitPoint;
             // first image set as data attribute at element (canvas)
@@ -89,7 +90,7 @@ export function imageScrollScrubber() {
 
             // draw first image so canvas is not empty
             const img = new Image();
-            img.src = currentFrame(1);
+            img.src = currentFrame(imageIndex);
             img.onload = function() {
                 context.drawImage(img, 0, 0);
             };
@@ -100,6 +101,7 @@ export function imageScrollScrubber() {
                 if (index >= 0) {
                     img.src = currentFrame(index);
                     context.drawImage(img, 0, 0);
+                    imageIndex = index;
                 }
 
                 // start at the right start point in space
@@ -144,6 +146,9 @@ export function imageScrollScrubber() {
                     preloadImages();
                     // set intitalRatio to actual ratio to only redraw on turnign point (1)
                     intitalRatio = ratio;
+                    // draw image in element (canvas) when "out of view"
+                    img.src = currentFrame(imageIndex);
+                    context.drawImage(img, 0, 0);
                 } else if (ratio >= 1 && intitalRatio <= 1) {
                     // get different image set
                     image = el.dataset.desktopImage;
@@ -155,6 +160,9 @@ export function imageScrollScrubber() {
                     preloadImages();
                     // set intitalRatio to actual ratio to only redraw on turnign point (1)
                     intitalRatio = ratio;
+                    // draw image in element (canvas) when "out of view"
+                    img.src = currentFrame(imageIndex);
+                    context.drawImage(img, 0, 0);
                 }
             };
 
