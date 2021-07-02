@@ -20,7 +20,18 @@ export function imageScrollScrubber() {
             // frameCount set as data attribute at element (canvas)
             const frameCount = el.dataset.framecount;
             // first image set as data attribute at element (canvas)
-            const image = el.dataset.firstImage;
+            const image = el.dataset.desktopImage;
+
+            const firstImage = d.createElement('img');
+            firstImage.classList.add('d-none');
+
+            firstImage.onload = function() {
+                console.log(this.width + ' x ' + this.height);
+                el.width = this.width;
+                el.height = this.height;
+            };
+
+            firstImage.src = image;
             // deconstruct string of image by last underscore _ filenames have to be name-xyz_0000.jpg,  name-xyz_0001.jpg, etc.
             const imageString = image.substr(0, image.lastIndexOf('_'));
 
@@ -62,8 +73,6 @@ export function imageScrollScrubber() {
             // draw first image so canvas is not empty
             const img = new Image();
             img.src = currentFrame(1);
-            el.width = 1000;
-            el.height = 1000;
             img.onload = function() {
                 context.drawImage(img, 0, 0);
             };
